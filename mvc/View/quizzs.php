@@ -54,20 +54,10 @@
         // Lorsque le DOM est chargé, on lance la récupération des quizzs pour la page 1
         document.addEventListener('DOMContentLoaded', async() => {
             
+
             let currentPage = 1;
             refreshList(currentPage);  // Appel de la fonction pour rafraîchir la liste des quizzs
-            previousLink.addEventListener('click', async () => {
-                if (currentPage > 1) {
-                    currentPage--
-                    await refreshList(currentPage)
-                }
-            })
-
-            nextLink.addEventListener('click', async () => {
-                currentPage++
-                await refreshList(currentPage)
-
-            })
+            
         });
     </script>
                 

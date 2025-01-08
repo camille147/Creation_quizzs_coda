@@ -5,8 +5,8 @@
 
     
     if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
-    $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest'
-    ) {            // Récupérer le paramètre 'component' depuis la requête GET
+        $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest'
+    ) {            
             $component = isset($_GET['component']) ? $_GET['component'] : null;
         
 

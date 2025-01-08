@@ -79,21 +79,24 @@ const handlePaginationNavigation = (page) => {
     previousLink?.addEventListener('click', async () => {
         if (page > 1) {
             page--; // Décrémente la page
+            console.log('compo_quizzs_previous')
             await refreshList(page); // Rafraîchit la liste
         }
     });
 
     // Gestion des boutons numérotés
-    paginationBtns.forEach((btn) => {
-        btn.addEventListener('click', async (e) => {
-            const pageNumber = parseInt(e.target.getAttribute('data-page'), 10); // Récupère le numéro de page
-            await refreshList(pageNumber); // Rafraîchit la liste pour cette page
-        });
-    });
+    for (let i = 0; i < paginationBtns.length; i++){
+        paginationBtns[i].addEventListener('click', async (e) => {
+            const pageNumber = e.target.getAttribute('data-page')
+            await refreshList(pageNumber)
+        })
+    }
 
     // Gestion du bouton "Suivant"
     nextLink?.addEventListener('click', async () => {
         page++; // Incrémente la page
+        console.log('compo_quizzs_next')
+
         await refreshList(page); // Rafraîchit la liste
     });
 };
