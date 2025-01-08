@@ -1,59 +1,42 @@
 <?php
 
-//function getAll(PDO $pdo) {
-//    $res = $pdo->prepare('SELECT * FROM quizz LIMIT 2');
-//    $res->execute();
-//    return $res->fetchAll();
 
-//}
-function getQuizzs(int $page = 1, int $itemPerPage): array | string
+function getQuizzs(PDO $pdo, int $page = 1, int $itemsPerPage): array
 {
-    
-    $offset = ($page - 1) * $itemPerPage;
+    // Calcul de l'offset pour la pagination
+    $offset = ($page - 1) * $itemsPerPage;
 
+    // Définir le mode d'erreur PDO
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $query="SELECT * FROM quizz  LIMIT $itemPerPage OFFSET $offset";
-    $prep = $pdo->prepare($query);
-    try
-    {
-        
+
+    try {
+        // Requête pour récupérer les quizzs avec pagination
+        $query = "SELECT id, title, published FROM quizz WHERE published = 1 LIMIT :limit OFFSET :offset";
+        $prep = $pdo->prepare($query);
+        $prep->bindValue(':limit', $itemsPerPage, PDO::PARAM_INT);
+        $prep->bindValue(':offset', $offset, PDO::PARAM_INT);
         $prep->execute();
+
+        // Récupérer les résultats
+        $quizzs = $prep->fetchAll(PDO::FETCH_ASSOC);
+        $prep->closeCursor();
+
+        // Requête pour compter le nombre total de quizzs
+        $countQuery = "SELECT COUNT(*) AS total FROM quizz";
+        $countprep = $pdo->prepare($countQuery);
+        $countprep->execute();
+        $count = $countprep->fetch(PDO::FETCH_ASSOC);
+
+        // Retourner les résultats sous forme de tableau
+        return [$quizzs, $count];
+
+
+    } catch (PDOException $e) {
+        // En cas d'erreur, retourner un tableau d'erreur structuré
+        return [
+            'error' => 'Erreur : ' . $e->getMessage()
+        ];
     }
-    catch (PDOException $e)
-    {
-        return " erreur : ".$e->getCode() .' :</b> '. $e->getMessage();
-    }
-
-    $quizzs = $prep->fetchAll(PDO::FETCH_ASSOC);
-    $prep->closeCursor();
-
-
-    
-   
-
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $query="SELECT COUNT(*) AS total  FROM quizz ";
-    $prep = $pdo->prepare($query);
-    try
-    {
-        $prep->execute();
-    }
-    catch (PDOException $e)
-    {
-        return " erreur : ".$e->getCode() .' :</b> '. $e->getMessage();
-    }
-
-    $count = $prep->fetch(PDO::FETCH_ASSOC);
-    $prep->closeCursor();
-
-    return [$quizzs, $count];
-
-
-
-    
-
-    
 }
-
 
 ?>

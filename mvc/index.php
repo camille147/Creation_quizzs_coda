@@ -3,6 +3,25 @@
     require "Includes/function.php";
     require '../vendor/autoload.php';
 
+    
+    if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+    $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest'
+    ) {            // Récupérer le paramètre 'component' depuis la requête GET
+            $component = isset($_GET['component']) ? $_GET['component'] : null;
+        
+
+            if (file_exists("Controller/$component.php")) {
+                require "Controller/$component.php";
+            } else {
+                throw new Exception("Component '$component' does not exist");
+            }
+        
+            require "Controller/quizzs.php";
+        
+        exit();
+    }
+
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">

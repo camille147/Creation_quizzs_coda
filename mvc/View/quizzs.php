@@ -13,8 +13,13 @@
             </div>
         </div>
         <div class="h1 pt-2 pb-2 text-center">Liste des Quizz disponibles</div>
+        <div class="row col d-flex justify-content-center">
+            <div class="spinner-border text-warning d-none" id="spinner" role="status">
+                 <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
         
-        <table class="table">
+        <table class="table" id="list-quizzs">
             <thead>
             <tr>
                 <th scope="col">N° de quizz</th>
@@ -23,13 +28,7 @@
             </tr>
             </thead>
             <tbody>
-             <?php foreach ($quizzs as $quizz): ?>
-                <tr>
-                    <th scope="row"><?php echo $quizz['id']; ?></th>
-                    <td><?php echo $quizz['title']; ?></td>
-                    
-                </tr>
-            <?php endforeach;; ?>
+             
             </tbody>
         </table>
         
@@ -43,14 +42,32 @@
     </div>
 </div>
 
-<script src="./assets/js/components/user.js" type="module"></script>
-<script src="./assets/js/services/user.js" type="module"></script>
-
-<script>
-import {handleEnabledClick} from "./Assets/js/components/user.js";
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    handleEnabledClick()
-})
-</script>
+<script src="./Assets/js/services/quizzs.js" type="module"></script>
+<script src="./Assets/js/components/quizzs.js" type="module"></script>
+
+<script type="module">
+        import { refreshList } from "./Assets/js/components/quizzs.js";
+
+
+        // Lorsque le DOM est chargé, on lance la récupération des quizzs pour la page 1
+        document.addEventListener('DOMContentLoaded', async() => {
+            
+            let currentPage = 1;
+            refreshList(currentPage);  // Appel de la fonction pour rafraîchir la liste des quizzs
+            previousLink.addEventListener('click', async () => {
+                if (currentPage > 1) {
+                    currentPage--
+                    await refreshList(currentPage)
+                }
+            })
+
+            nextLink.addEventListener('click', async () => {
+                currentPage++
+                await refreshList(currentPage)
+
+            })
+        });
+    </script>
+                
