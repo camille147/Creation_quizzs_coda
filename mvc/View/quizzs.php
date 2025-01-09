@@ -1,5 +1,4 @@
 
-
 <?php
 /**
  * @var array $quizzs
@@ -9,7 +8,7 @@
     <div class="col">
         <div class="row">
             <div class="mb-3 d-flex justify-content-end">
-                <a href="index.php?component=user" type="button" class="btn btn-primary" ><i class="fa fa-plus me-2"></i>Connexion Admin</a>
+                <a href="index.php?component=login" type="button" class="btn btn-primary" ><i class="fa fa-plus me-2"></i>Connexion Admin</a>
             </div>
         </div>
         <div class="h1 pt-2 pb-2 text-center">Liste des Quizz disponibles</div>

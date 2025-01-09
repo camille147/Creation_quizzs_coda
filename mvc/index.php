@@ -1,23 +1,36 @@
 <?php
+    session_start();
     require "Includes/database.php";
     require "Includes/function.php";
     require '../vendor/autoload.php';
 
-    
+
+    if(isset($_GET['deconnect'])) {
+        session_destroy();
+        header("Location: index.php");
+        exit();
+    }
+
     if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
         $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest'
-    ) {            
-            $component = isset($_GET['component']) ? $_GET['component'] : null;
-        
+    ) {
+        if(!empty($_SESSION['auth'])) {
+            $componentName = !empty($_GET['component'])
+                ? htmlspecialchars($_GET['component'], ENT_QUOTES, 'UTF-8')
+                : 'quizzs';
 
-            if (file_exists("Controller/$component.php")) {
-                require "Controller/$component.php";
+            $actionName = !empty($_GET['action'])
+                ? htmlspecialchars($_GET['action'], ENT_QUOTES, 'UTF-8')
+                : null;
+
+            if (file_exists("Controller/$componentName.php")) {
+                require "Controller/$componentName.php";
             } else {
-                throw new Exception("Component '$component' does not exist");
+                throw new Exception("Component '$componentName' does not exist");
             }
-        
+        } else {
             require "Controller/quizzs.php";
-        
+        }
         exit();
     }
 
@@ -34,8 +47,21 @@
     <body>
         <div class="container">
         <?php
-            require "Controller/quizzs.php";
+            if(!empty($_SESSION['auth'])) {
+                $componentName = !empty($_GET['component'])
+                ? htmlspecialchars($_GET['component'], ENT_QUOTES, 'UTF-8')
+                : 'quizzs';
+
+                if (file_exists("Controller/$componentName.php")) {
+                    require "Controller/$componentName.php";
+                } else {
+                    throw new Exception("Component '$componentName' does not exist");
+                }
+            } else {
+                require "controller/quizzs.php";
+            }
         ?>
+        
 
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
