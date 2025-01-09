@@ -50,13 +50,10 @@
 <script type="module">
         import { refreshList } from "./Assets/js/components/quizzs.js";
 
-
-        // Lorsque le DOM est chargé, on lance la récupération des quizzs pour la page 1
         document.addEventListener('DOMContentLoaded', async() => {
             
-
-            let currentPage = 1;
-            refreshList(currentPage);  // Appel de la fonction pour rafraîchir la liste des quizzs
+            let currentPage = 1
+            refreshList(currentPage)
             
         });
     </script>
