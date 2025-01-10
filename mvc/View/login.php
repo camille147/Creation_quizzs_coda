@@ -17,7 +17,7 @@
                     <input type="password" class="form-control" id="pass" name="pass" required  autocomplete="off" >
                 </div>
                 <div class="mb-3 d-flex justify-content-first">
-                    <a href="index.php?component=quizzs" type="button" class="btn btn-primary" ><i class="fa fa-plus me-2"></i>Retour</a>
+                    <a href="index.php?component=quizzs" type="button" class="btn btn-primary" >Retour</a>
                 </div>
                 <div class="d-flex justify-content-end">
                     <button type="button" class="btn btn-primary" name="valid_login" id="valid-login-btn">Valider</button>

@@ -16,7 +16,24 @@ export const refreshListAdmin = async (page) => {
             <tr>
                 <td>${data.results[i].id}</td>
                 <td>${data.results[i].title}</td>
-                <td>${data.results[i].published}</td>
+                <td>
+                    <a href="#">
+                        ${data.results[i].published
+                            ? `<i class="fa-solid fa-check text-success enabled-icon" data-id="${data.results[i].id}"></i>`
+                            : `<i class="fa-solid fa-xmark enabled-icon text-danger" data-id="${data.results[i].id}"></i>`}
+                    </a>
+                </td>
+                <td>
+                    <div class="mb-3 d-flex justify-content-end">
+                        <a href="index.php?component=quizz_admin&id=${data.results[i].id}" type="button" class="btn btn-primary" >Modifier</a>
+                    </div>
+                </td>
+                <td>
+                    <div class="mb-3 d-flex justify-content-end">
+                        <a href="index.php?component=quizz_admin&id=${data.results[i].id}" type="button" class="btn btn-primary" >Supprimer</a>
+                    </div>
+                </td>
+
 
             </tr>`
         )

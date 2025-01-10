@@ -6,7 +6,7 @@ export const getQuizzsAdmin = async (currentPage) => {
                 'X-Requested-With': 'XMLHttpRequest'
             },
         })
-        console.log(response)
+        //console.log(response)
         if (!response.ok) {
             throw new Error(`Erreur HTTP : ${response.status}`)
         }

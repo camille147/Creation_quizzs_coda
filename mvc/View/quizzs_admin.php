@@ -2,10 +2,13 @@
     <div class="col">
         <div class="row">
             <div class="mb-3 d-flex justify-content-end">
-                <a href="?deconnect" type="button" class="btn btn-primary" ><i class="fa fa-plus me-2"></i>Déconnexnion</a>
+                <a href="?deconnect" type="button" class="btn btn-primary" ></i>Déconnexnion</a>
             </div>
         </div>
         <div class="h1 pt-2 pb-2 text-center">Liste des Quizz disponibles</div>
+        <div class="mb-3 d-flex justify-content">
+            <a href="#" type="button" class="btn btn-primary" ><i class="fa fa-plus me-2"></i>Ajouter</a>
+        </div>
         <div class="row col d-flex justify-content-center">
             <div class="spinner-border text-warning d-none" id="spinner" role="status">
                  <span class="visually-hidden">Loading...</span>
