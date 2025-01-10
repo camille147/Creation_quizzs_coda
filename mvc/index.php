@@ -14,10 +14,11 @@
     if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
         $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest'
     ) {
+        
         if(!empty($_SESSION['auth'])) {
             $componentName = !empty($_GET['component'])
                 ? htmlspecialchars($_GET['component'], ENT_QUOTES, 'UTF-8')
-                : 'quizzs';
+                : 'quizzs_admin';
 
             $actionName = !empty($_GET['action'])
                 ? htmlspecialchars($_GET['action'], ENT_QUOTES, 'UTF-8')
@@ -29,7 +30,11 @@
                 throw new Exception("Component '$componentName' does not exist");
             }
         } else {
-            require "Controller/quizzs.php";
+            $componentName = !empty($_GET['component'])
+                ? htmlspecialchars($_GET['component'], ENT_QUOTES, 'UTF-8')
+                : 'quizzs';
+
+            require "Controller/$componentName.php";
         }
         exit();
     }
@@ -47,10 +52,11 @@
     <body>
         <div class="container">
         <?php
+            //var_dump($_GET['component']);
             if(!empty($_SESSION['auth'])) {
                 $componentName = !empty($_GET['component'])
                 ? htmlspecialchars($_GET['component'], ENT_QUOTES, 'UTF-8')
-                : 'quizzs';
+                : 'quizzs_admin';
 
                 if (file_exists("Controller/$componentName.php")) {
                     require "Controller/$componentName.php";
@@ -58,7 +64,11 @@
                     throw new Exception("Component '$componentName' does not exist");
                 }
             } else {
-                require "controller/quizzs.php";
+                $componentName = !empty($_GET['component'])
+                ? htmlspecialchars($_GET['component'], ENT_QUOTES, 'UTF-8')
+                : 'quizzs';
+
+                require "Controller/$componentName.php";            
             }
         ?>
         

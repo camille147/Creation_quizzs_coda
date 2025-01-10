@@ -1,14 +1,8 @@
-
-<?php
-/**
- * @var array $quizzs
-*/
-?>
 <div class="row">
     <div class="col">
         <div class="row">
             <div class="mb-3 d-flex justify-content-end">
-                <a href="index.php?component=login" type="button" class="btn btn-primary" ><i class="fa fa-plus me-2"></i>Connexion Admin</a>
+                <a href="?deconnect" type="button" class="btn btn-primary" ><i class="fa fa-plus me-2"></i>Déconnexnion</a>
             </div>
         </div>
         <div class="h1 pt-2 pb-2 text-center">Liste des Quizz disponibles</div>
@@ -23,7 +17,7 @@
             <tr>
                 <th scope="col">N° de quizz</th>
                 <th scope="col">Titre</th>
-                
+                <th scope="col">Statut</th>
             </tr>
             </thead>
             <tbody>
@@ -41,17 +35,14 @@
     </div>
 </div>
 
-
-
-<script src="./Assets/js/services/quizzs.js" type="module"></script>
-<script src="./Assets/js/components/quizzs.js" type="module"></script>
+<script src="./Assets/js/services/quizzs_admin.js" type="module"></script>
+<script src="./Assets/js/components/quizzs_admin.js" type="module"></script>
 
 <script type="module">
-    import { refreshList } from "./Assets/js/components/quizzs.js";
+    import { refreshListAdmin } from "./Assets/js/components/quizzs_admin.js";
 
     document.addEventListener('DOMContentLoaded', async() => {
         let currentPage = 1
-        refreshList(currentPage)
+        refreshListAdmin(currentPage)
     });
 </script>
-                
