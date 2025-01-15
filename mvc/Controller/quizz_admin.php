@@ -4,12 +4,18 @@
     $action = 'create';
     $errors = [];
     if (!empty($_GET['id'])) {
-        $action = 'edit';
-       $quizz = getQuizzAdmin($pdo, $_GET['id']);
-       //var_dump($quizz);
-       if(!is_array($quizz)) {
-           $errors = $quizz;
-       }
+        //$action = 'edit';
+        $action = $_GET['action'];
+        if ($action == 'edit') {
+            $quizz = getQuizzAdmin($pdo, $_GET['id']);
+            if(!is_array($quizz)) {
+                $errors = $quizz;
+            }
+        }else {
+            var_dump($action);
+        }
+
+        
     }
 
     if (isset($_POST['edit_button'])) {

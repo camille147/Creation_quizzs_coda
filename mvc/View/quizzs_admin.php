@@ -47,5 +47,6 @@
     document.addEventListener('DOMContentLoaded', async() => {
         let currentPage = 1
         refreshListAdmin(currentPage)
-    });
+    })
+        
 </script>

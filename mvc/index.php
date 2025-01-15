@@ -1,9 +1,11 @@
 <?php
     session_start();
+    require '../vendor/autoload.php';
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->safeLoad();
     require "Includes/database.php";
     require "Includes/function.php";
-    require '../vendor/autoload.php';
-
+    
 
     if(isset($_GET['deconnect'])) {
         session_destroy();

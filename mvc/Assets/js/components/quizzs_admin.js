@@ -25,12 +25,12 @@ export const refreshListAdmin = async (page) => {
                 </td>
                 <td>
                     <div class="mb-3 d-flex justify-content-end">
-                        <a href="index.php?component=quizz_admin&id=${data.results[i].id}" type="button" class="btn btn-primary" >Modifier</a>
+                        <a href="index.php?component=quizz_admin&action=edit&id=${data.results[i].id}" type="button" class="btn btn-primary" >Modifier</a>
                     </div>
                 </td>
                 <td>
                     <div class="mb-3 d-flex justify-content-end">
-                        <a href="index.php?component=quizz_admin&id=${data.results[i].id}" type="button" class="btn btn-primary" >Supprimer</a>
+                        <a href="index.php?component=quizzs_admin&action=delete&id=${data.results[i].id}" type="button" class="btn btn-primary delete-link" >Supprimer</a>
                     </div>
                 </td>
 
@@ -45,6 +45,16 @@ export const refreshListAdmin = async (page) => {
         spinner.classList.add('d-none')
 
     }
+    document.querySelector('#list-quizzs').addEventListener('click', (e) => {
+        // Vérifier si l'élément cliqué est un lien avec la classe 'delete-link'
+        if (e.target.classList.contains('delete-link')) {
+            e.preventDefault(); // Empêche la redirection immédiate
+    
+            if (confirmDeleteQuizz()) {
+                window.location.href = e.target.getAttribute('href'); // Redirection si confirmé
+            }
+        }
+    });
     
 }
 
@@ -87,4 +97,11 @@ const handlePaginationNavigationAdmin = (page) => {
         page++
         await refreshListAdmin(page)
     })
+}
+
+
+
+export const confirmDeleteQuizz = () => {
+    const isConfirmedDeleteQuizz = window.confirm("Voulez-vous vraiment supprimer ce quizz ?")
+    return isConfirmedDeleteQuizz
 }
