@@ -7,7 +7,7 @@ if (
 ){
     $errors = [];
     $username = !empty($_POST['username']) ? $_POST['username'] : null;
-        $pass = !empty($_POST['password']) ? $_POST['password'] : null;
+    $pass = !empty($_POST['password']) ? $_POST['password'] : null;
         //var_dump($username);
         //var_dump($pass);
 

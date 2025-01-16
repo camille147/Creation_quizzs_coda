@@ -41,12 +41,16 @@
 <script src="./Assets/js/services/quizzs_admin.js" type="module"></script>
 <script src="./Assets/js/components/quizzs_admin.js" type="module"></script>
 
+
 <script type="module">
-    import { refreshListAdmin } from "./Assets/js/components/quizzs_admin.js";
+    import { refreshListAdmin, handleEnabledClick } from "./Assets/js/components/quizzs_admin.js";
+
 
     document.addEventListener('DOMContentLoaded', async() => {
         let currentPage = 1
         refreshListAdmin(currentPage)
+        handleEnabledClick()
+
     })
         
 </script>

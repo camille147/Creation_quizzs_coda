@@ -9,6 +9,8 @@ function getQuizzAdmin(PDO $pdo, int $id): array | string
                 q.published AS quiz_published,
                 question.id AS question_id,
                 question.title AS question_title,
+                question.Numero_question AS question_num,
+
                 question.type AS question_type
             FROM 
                 quizz AS q
@@ -40,7 +42,8 @@ function getQuizzAdmin(PDO $pdo, int $id): array | string
                 $quiz['questions'][] = [
                     'id' => $row['question_id'],
                     'title' => $row['question_title'],
-                    'type' => $row['question_type']
+                    'type' => $row['question_type'],
+                    'Numero_question' => $row['question_num']
                 ];
             }
         }

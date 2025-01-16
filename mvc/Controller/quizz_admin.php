@@ -12,7 +12,7 @@
                 $errors = $quizz;
             }
         }else {
-            var_dump($action);
+            //var_dump($action);
         }
 
         

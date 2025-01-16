@@ -41,11 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
             loginForm.reportValidity()
             return false
         }
-        //console.log(loginForm.elements['username'].value)
-        //console.log(loginForm.elements.pass.value)
+        
        
         const loginResult = await login(loginForm.elements['username'].value, loginForm.elements.pass.value)
-        console.log("login pass")
        
         if (loginResult.hasOwnProperty('authentication')){
             document.location.href = 'index.php'

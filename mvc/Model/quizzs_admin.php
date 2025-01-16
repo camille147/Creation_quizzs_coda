@@ -56,4 +56,22 @@ function deleteQuizz(
     return true;
 }
 
+function toggleEnabled(PDO $pdo, int $id): string | bool
+    {
+        $res = $pdo->prepare('UPDATE `quizz` SET published = NOT published WHERE id = :id');
+        $res->bindParam(':id', $id, PDO::PARAM_INT);
+
+        try
+        {
+            $res->execute();
+        }
+        catch (PDOException $e)
+        {
+            return " erreur : ".$e->getCode() .' :</b> '. $e->getMessage();
+        }
+
+        return true;
+
+    }
+
 ?>

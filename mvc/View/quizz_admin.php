@@ -9,6 +9,8 @@
                 <label for="title" class="form-label">Titre</label>
                 <input type="text" class="form-control" id="title" name="title" value="<?php  echo $quizz['title'] ?? ''; ?>" required>
             </div>
+
+            
             
             
             <div class="mb-3">
@@ -36,8 +38,13 @@
                     <tbody>
             <?php foreach ($quizz['questions'] as $question): ?>
                 <tr>
-                    <td><?php echo $question['id']; ?></td> <!-- Affichage de l'ID -->
-                    <td><?php echo $question['title']; ?></td> <!-- Affichage du titre -->
+                    <td><?php echo $question['Numero_question']; ?></td> 
+                    <td><?php echo $question['title']; ?></td>
+                    <td>
+                        <div class="mb-3 d-flex justify-content-end">
+                            <a href="index.php?component=question_admin&action=edit_question&id=<?php echo $question['id']; ?>" type="button" class="btn btn-primary" >Modifier</a>
+                        </div>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

@@ -18,3 +18,13 @@ export const getQuizzsAdmin = async (currentPage) => {
         
     }
 };
+
+export const toggleEnabledUser = async (id) => {
+    const response = await fetch(`index.php?component=quizzs_admin&action=toggle_enabled&id=${id}`,{
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    //console.log(response)
+    return await response.json()
+}
