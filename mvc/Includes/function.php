@@ -5,4 +5,6 @@
         return trim(htmlspecialchars($value, ENT_QUOTES));          
     }                                                                  
 
+    
+    
 ?>

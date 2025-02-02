@@ -15,6 +15,11 @@ export const refreshList = async (page) => {
             <tr>
                 <td>${data.results[i].id}</td>
                 <td>${data.results[i].title}</td>
+                <td>
+                    <div class="mb-3 d-flex justify-content-end">
+                        <a href="index.php?component=play_quizz&id=${data.results[i].id}" type="button" class="btn btn-info">Faire</a>
+                    </div>
+                </td>
             </tr>`
         )
     

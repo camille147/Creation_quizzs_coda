@@ -45,8 +45,15 @@
                             <a href="index.php?component=question_admin&action=edit_question&id=<?php echo $question['id']; ?>" type="button" class="btn btn-primary" >Modifier</a>
                         </div>
                     </td>
+                    <td>
+                        <div class="mb-3 d-flex justify-content-end">
+                            <a href="index.php?component=quizz_admin&action=delete&id=<?php echo $question['id']; ?>&quizz_id=<?php echo $quizz['id']; ?>" type="button" class="btn btn-outline-danger delete-link">Supprimer</a>
+                        </div>
+                    </td>
                 </tr>
             <?php endforeach; ?>
+            <button type="button" id="add_question_button"class="btn btn-primary" name="<?php echo $action; ?>_button_question">Add a question</button>
+
         </tbody>
                 </table>
                 
@@ -58,3 +65,35 @@
         </form>
     </div>
 </div>
+
+
+
+<script type="module">
+    
+    const confirmDeleteQuizz = () => {
+        const isConfirmedDeleteQuizz = window.confirm("Voulez-vous vraiment supprimer ce quizz ?")
+        return isConfirmedDeleteQuizz
+    }
+
+
+    document.addEventListener('DOMContentLoaded', async() => {
+        document.querySelector('#list-quizzs').addEventListener('click', (e) => {
+        // Vérifier si l'élément cliqué est un lien avec la classe 'delete-link'
+            if (e.target.classList.contains('delete-link')) {
+                e.preventDefault(); // Empêche la redirection immédiate
+    
+                if (confirmDeleteQuizz()) {
+                    window.location.href = e.target.getAttribute('href'); // Redirection si confirmé
+                }
+            }
+        })
+
+        document.querySelector('#add_question_button').addEventListener('click', () => {
+            
+            console.log('add question')
+        })
+
+
+    })
+        
+</script>

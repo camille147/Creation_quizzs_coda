@@ -6,7 +6,6 @@ export const getQuizzsAdmin = async (currentPage) => {
                 'X-Requested-With': 'XMLHttpRequest'
             },
         })
-        //console.log(response)
         if (!response.ok) {
             throw new Error(`Erreur HTTP : ${response.status}`)
         }
@@ -19,7 +18,7 @@ export const getQuizzsAdmin = async (currentPage) => {
     }
 };
 
-export const toggleEnabledUser = async (id) => {
+export const toggleEnabledUser = async(id) => {
     const response = await fetch(`index.php?component=quizzs_admin&action=toggle_enabled&id=${id}`,{
         headers: {
             'X-Requested-With': 'XMLHttpRequest'

@@ -80,3 +80,27 @@ function updateQuizz(
 
     return true;
 }
+
+function deleteQuestion(
+    PDO $pdo,
+    int $id,
+    
+)
+{
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $query="DELETE FROM question WHERE id = :id";
+    $prep = $pdo->prepare($query);
+    $prep->bindValue(':id', $id, PDO::PARAM_INT);
+    try
+    {
+        $prep->execute();
+    }
+    catch (PDOException $e)
+    {
+        return " erreur : ".$e->getCode() .' :</b> '. $e->getMessage();
+    }
+    $prep->closeCursor();
+
+
+    return true;
+}

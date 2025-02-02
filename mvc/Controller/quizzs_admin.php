@@ -1,7 +1,7 @@
 <?php
     require "Model/quizzs_admin.php";
 
-    const LIST_PERSONS_ITEMS_PER_PAGE = 2;
+    const LIST_PERSONS_ITEMS_PER_PAGE = 15;
 
     $action = $_GET['action'] ?? '';
     $errors = [];
