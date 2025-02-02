@@ -3,18 +3,14 @@
 * @var PDO $pdo
 */
 require '../Includes/database.php';
-require './vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';  
+//$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../mvc');
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../.env');  
+$dotenv->load();
 
-//$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-//$dotenv->load(); // Charge les variables d'environnement avant de les utiliser
-
-// Maintenant vous pouvez accéder aux variables d'environnement
-//var_dump($_ENV['DB_NAME']);   // Affiche la valeur de DB_NAME
-//echo $_ENV['DB_NAME'];   
-
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $faker = Faker\Factory::create('fr_FR');
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 for ($i = 0; $i <= 50; $i++) {
     $query = "INSERT INTO quizz (title, published, number_question) VALUES 
@@ -26,9 +22,49 @@ for ($i = 0; $i <= 50; $i++) {
 
     try {
         $prep->execute();
+        $quizzId = $pdo->lastInsertId();
+
     } catch (PDOException $e) {
         echo "Erreur : " . $e->getCode() . ' : ' . $e->getMessage();
     }
     $prep->closeCursor();
+
+    for ($j = 0; $j < 5; $j++) {
+        $query = "INSERT INTO question (title, type, quizz_id, Numero_question, published) VALUES 
+                  (:title, :type, :quizz_id, :Numero_question, :published)";
+        $prep = $pdo->prepare($query);
+        $type = $faker->numberBetween(0, 1);
+        $prep->bindValue(':title', $faker->sentence());
+        $prep->bindValue(':type', $type, PDO::PARAM_INT);
+        $prep->bindValue(':quizz_id', $quizzId, PDO::PARAM_INT);
+        $prep->bindValue(':Numero_question', $j + 1, PDO::PARAM_INT);
+        $prep->bindValue(':published', $faker->numberBetween(0, 1), PDO::PARAM_INT);
+
+        try {
+            $prep->execute();
+            $questionId = $pdo->lastInsertId();
+        } catch (PDOException $e) {
+            echo "Erreur : " . $e->getCode() . ' : ' . $e->getMessage();
+        }
+        $prep->closeCursor();
+
+        for ($k = 0; $k < 4; $k++) {
+            $query = "INSERT INTO response (title, statut, points, question_id) VALUES 
+                      (:title, :statut, :points, :question_id)";
+            $prep = $pdo->prepare($query);
+            $statut = ($type == 0) ? $faker->numberBetween(0, 1) : $k == 0; 
+            $prep->bindValue(':title', $faker->sentence());
+            $prep->bindValue(':statut', $statut, PDO::PARAM_INT);
+            $prep->bindValue(':points', $statut ? 10 : 0, PDO::PARAM_INT); 
+            $prep->bindValue(':question_id', $questionId, PDO::PARAM_INT);
+
+            try {
+                $prep->execute();
+            } catch (PDOException $e) {
+                echo "Erreur : " . $e->getCode() . ' : ' . $e->getMessage();
+            }
+            $prep->closeCursor();
+        }
+    }
 }
 ?>

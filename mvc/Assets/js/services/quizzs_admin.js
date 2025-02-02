@@ -13,10 +13,10 @@ export const getQuizzsAdmin = async (currentPage) => {
         return await response.json()
     } catch (error) {
         console.error('Erreur dans getQuizzsAdmin :')
-        throw error;
+        throw error
         
     }
-};
+}
 
 export const toggleEnabledUser = async(id) => {
     const response = await fetch(`index.php?component=quizzs_admin&action=toggle_enabled&id=${id}`,{
@@ -24,6 +24,5 @@ export const toggleEnabledUser = async(id) => {
             'X-Requested-With': 'XMLHttpRequest'
         }
     })
-    //console.log(response)
     return await response.json()
 }

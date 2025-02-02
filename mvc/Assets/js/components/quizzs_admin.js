@@ -46,7 +46,6 @@ export const refreshListAdmin = async (page) => {
         document.querySelector('#pagination').innerHTML = getPaginationAdmin(data.count.total)
         handlePaginationNavigationAdmin(page)
 
-        // Réattribue les gestionnaires d'événements après mise à jour
         handleEnabledClick()
 
     } catch (error) {
@@ -55,12 +54,11 @@ export const refreshListAdmin = async (page) => {
         spinner.classList.add('d-none')
     }
     document.querySelector('#list-quizzs').addEventListener('click', (e) => {
-        // Vérifier si l'élément cliqué est un lien avec la classe 'delete-link'
         if (e.target.classList.contains('delete-link')) {
-            e.preventDefault(); // Empêche la redirection immédiate
+            e.preventDefault()
     
             if (confirmDeleteQuizz()) {
-                window.location.href = e.target.getAttribute('href'); // Redirection si confirmé
+                window.location.href = e.target.getAttribute('href')
             }
         }
     });
@@ -69,7 +67,7 @@ export const refreshListAdmin = async (page) => {
 }
 
 const getPaginationAdmin = (total) => {      
-    const countPages = Math.ceil(total / 2)
+    const countPages = Math.ceil(total /2)
     let paginationButton = []
 
           
@@ -120,7 +118,6 @@ export const confirmDeleteQuizz = () => {
 
 export const handleEnabledClick = () => {
     const enabledIcons = document.querySelectorAll(".enabled-icon")
-    //console.log(enabledIcons)
 
     enabledIcons.forEach(enabledIcon => {
         enabledIcon.addEventListener('click', async (e) => {
@@ -137,13 +134,9 @@ export const handleEnabledClick = () => {
                         e.target.classList.add('fa-check', 'text-success')
                         e.target.classList.remove('fa-xmark', 'text-danger')
                     }
-                    //showToast('Le statut de l\'utilisateur a été modifié avec succès', 'bg-success')
-                } else {
-                    //showToast(result.error, 'bg-danger')
-                }
+                } 
             } catch (error) {
                 console.error('Erreur lors de la bascule du statut:', error)
-                //showToast('Une erreur est survenue', 'bg-danger')
             }
         })
     })

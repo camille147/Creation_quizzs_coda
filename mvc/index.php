@@ -4,17 +4,10 @@
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
     $dotenv->safeLoad();
     require "Includes/database.php";
-    //require ("Includes/helper.php");
 
     require "Includes/function.php";
-
     
-    //var_dump($dotenv);
-    //var_dump($_ENV);   
-
-    //var_dump($_ENV);
-    //var_dump($dotenv);
-
+    
     if(isset($_GET['deconnect'])) {
         session_destroy();
         header("Location: index.php");
@@ -62,7 +55,6 @@
     <body>
         <div class="container">
         <?php
-            //var_dump($_GET['component']);
             if(!empty($_SESSION['auth'])) {
                 $componentName = !empty($_GET['component'])
                 ? htmlspecialchars($_GET['component'], ENT_QUOTES, 'UTF-8')
@@ -82,7 +74,6 @@
             }
         ?>
         </div>
-        <!--?php require "_partials/_toast.html"; ?>-->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

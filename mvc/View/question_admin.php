@@ -121,43 +121,42 @@
 </div>
 
 <style>
-  /* Applique une couleur verte au switch */
   .statut:checked {
-    background-color: #28a745; /* Couleur verte */
+    background-color: #28a745;
     border-color: #28a745;
   }
 </style>
 <script>
-    const textElement = document.getElementById('response_title_text');
-    const inputElement = document.getElementById('response_title_input');
+    const textElement = document.getElementById('response_title_text')
+    const inputElement = document.getElementById('response_title_input')
 
-    function showInput(id) {
-        var textElement = document.getElementById('response_title_text_' + id);  
-        var inputElement = document.getElementById('response_title_input_' + id);  
+    const showInput = (id) => {
+        var textElement = document.getElementById('response_title_text_' + id)
+        var inputElement = document.getElementById('response_title_input_' + id)
 
-        textElement.classList.add('d-none');
-        inputElement.classList.remove('d-none');
+        textElement.classList.add('d-none')
+        inputElement.classList.remove('d-none')
 
-        inputElement.value = textElement.textContent.trim();
-        inputElement.focus();
+        inputElement.value = textElement.textContent.trim()
+        inputElement.focus()
     }
 
     
 
-    function saveText(id) {
-    var textElement = document.getElementById('response_title_text_' + id);
-    var inputElement = document.getElementById('response_title_input_' + id);
+    const saveText = (id) => {
+    var textElement = document.getElementById('response_title_text_' + id)
+    var inputElement = document.getElementById('response_title_input_' + id)
 
-    textElement.textContent = inputElement.value.trim();
+    textElement.textContent = inputElement.value.trim()
 
-    textElement.classList.remove('d-none');
-    inputElement.classList.add('d-none');
+    textElement.classList.remove('d-none')
+    inputElement.classList.add('d-none')
 
     
 }
 document.querySelector('#add_response_button').addEventListener('click', () => {
-    let tableBody = document.querySelector('#list-responses tbody');
-    let newRowId = Date.now(); // Utilisation d'un timestamp pour identifier chaque nouvelle réponse
+    let tableBody = document.querySelector('#list-responses tbody')
+    let newRowId = Date.now()
 
     let newRow = `
         <tr id="row_${newRowId}">
@@ -197,7 +196,7 @@ document.querySelector('#add_response_button').addEventListener('click', () => {
             </td>
         </tr>`;
 
-    tableBody.insertAdjacentHTML('beforeend', newRow);
+    tableBody.insertAdjacentHTML('beforeend', newRow)
             
 })
 

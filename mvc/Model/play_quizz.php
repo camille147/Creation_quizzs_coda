@@ -29,16 +29,14 @@ function getPlayQuizz(PDO $pdo, int $id): array
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if (empty($results)) {
-        return []; // Aucun résultat trouvé
+        return []; 
     }
 
-    // Restructuration des données
     $questions = [];
     
     foreach ($results as $row) {
         $quest_id = $row['quest_id'];
 
-        // Si la question n'existe pas encore dans le tableau, on l'ajoute
         if (!isset($questions[$quest_id])) {
             $questions[$quest_id] = [
                 'id' => $row['quest_id'],
@@ -50,7 +48,6 @@ function getPlayQuizz(PDO $pdo, int $id): array
             ];
         }
 
-        // Si la réponse existe (éviter les valeurs NULL)
         if (!is_null($row['res_id'])) {
             $questions[$quest_id]['responses'][] = [
                 'id' => $row['res_id'],
@@ -62,6 +59,5 @@ function getPlayQuizz(PDO $pdo, int $id): array
         }
     }
 
-    // Réindexation du tableau pour éviter les clés associatives
     return array_values($questions);
 }

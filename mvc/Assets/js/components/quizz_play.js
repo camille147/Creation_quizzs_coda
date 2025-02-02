@@ -159,8 +159,6 @@ export const doingQuizz = async (id) => {
     let activePourcentageQuestion = 0
     const pourcentagePerQuestion = 100 / data.length
 
-
-    
     previousBtn.addEventListener('click', () => {
         changeQuestion('previous')
         
@@ -168,9 +166,6 @@ export const doingQuizz = async (id) => {
         updateProgressBar(activePourcentageQuestion)
 
         userResponses.splice(activeQuestion,1)
-
-        
-
     })
 
     nextBtn.addEventListener('click', () => {

@@ -9,19 +9,15 @@ export const login = async (username, pass) => {
                 username: username,
                 password: pass
             })
-        });
-
-        
-        // Vérifie si la réponse est correcte
+        })
         if (!response.ok) {
-            throw new Error(`Erreur HTTP : ${response.status}`);
+            throw new Error(`Erreur HTTP : ${response.status}`)
         }
 
-        
-       return await response.json();
+        return await response.json()
 
     } catch (error) {
-        console.error('Erreur dans login :', error);
-        throw error;
+        console.error('Erreur dans login :', error)
+        throw error
     }
 };

@@ -16,7 +16,6 @@
             header("Location: index.php?component=quizz_admin&action=edit&id=${quizz_id}");
             exit();
         }else{
-            //$action = 'edit';
             $action = $_GET['action'];
             if ($action == 'edit') {
                 $quizz = getQuizzAdmin($pdo, $_GET['id']);
@@ -24,7 +23,7 @@
                     $errors = $quizz;
                 }
             }else {
-                //var_dump($action);
+                var_dump($action);
             }
         }
     
@@ -39,7 +38,6 @@
         if(empty($errors)) {
 
             $updatedQuizz = updateQuizz($pdo, $id,$title,$published);
-            //console.log($updatedQuizz);
 
             if (!is_bool($updatedQuizz)) {
                 $errors[] = $updatedQuizz;

@@ -9,7 +9,6 @@
     if (!empty($_GET['id']) && ($_GET['action'])==='delete') {
         $id = cleanString($_GET['id']);
 
-        //$action = 'edit';
         $action = $_GET['action'];
         if ($action === 'delete') {
                 deleteQuizz($pdo, $id);
@@ -45,7 +44,6 @@
             case 'toggle_enabled':
                 $id = cleanString($_GET['id']);
                 $res = toggleEnabled($pdo, $id);
-                //var_dump($res);
                 header("Content-Type: application/json");
                 if (is_bool($res)) {
                     echo json_encode(['success' => true]);

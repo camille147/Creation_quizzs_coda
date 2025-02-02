@@ -16,11 +16,9 @@
       </div>
       <div class="row mt-4">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <!-- Les onglets de questions seront ajoutés ici -->
-           
+          
         </ul>
         <div class="tab-content" id="myTabContent">
-          <!-- Les contenus des onglets seront ajoutés ici -->
         </div>
       </div>
 
@@ -57,16 +55,15 @@
 
 <script type="module">
 
-    import {contentQuizz, doingQuizz} from "./Assets/js/components/quizz_play.js";
+    import {contentQuizz, doingQuizz} from "./Assets/js/components/quizz_play.js"
 
     document.addEventListener('DOMContentLoaded', async () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const quizzId = urlParams.get('id'); // Récupérer l'ID depuis l'URL
+        const urlParams = new URLSearchParams(window.location.search)
+        const quizzId = urlParams.get('id')
         
-         await contentQuizz(quizzId); // Passer l'ID
+         await contentQuizz(quizzId)
          await doingQuizz(quizzId)
-         console.log("ça passe")
         
-    });
+    })
         
 </script>

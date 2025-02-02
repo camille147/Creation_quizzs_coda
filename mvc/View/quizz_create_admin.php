@@ -291,7 +291,6 @@ require("_partials/errors.php")
     </div>
 </div>
 
-<!--<script src="./Assets/js/services/quizzs_admin.js" type="module"></script>-->
 <script src="./Assets/js/components/quizz_create_admin.js" type="module"></script>
 
 
@@ -300,8 +299,6 @@ require("_partials/errors.php")
 
     document.addEventListener('DOMContentLoaded', () => {
         addQuestion()
-        //addResponse()
-        console.log('ç apasse')
 
 
     })

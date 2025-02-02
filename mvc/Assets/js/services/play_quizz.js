@@ -14,6 +14,6 @@ export const getPlayQuizz = async (id) => {
         return await response.json()
     } catch (error) {
         console.error('Erreur dans getPlayQuizz :', error)
-        throw error;
+        throw error
     }
 };

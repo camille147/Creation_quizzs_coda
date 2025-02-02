@@ -1,14 +1,11 @@
 <?php
     require "Model/quizzs.php";
 
-
-   // $quizzs = getAll($pdo);
-    const LIST_PERSONS_ITEMS_PER_PAGE = 2;
+    const LIST_PERSONS_ITEMS_PER_PAGE = 15;
 
     if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
     $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest'
     ){
-        //$page = 1;
         $page = cleanString($_GET['page']) ?? 1;    
         [$quizzs, $count] = getQuizzs($pdo, $page, LIST_PERSONS_ITEMS_PER_PAGE);
 

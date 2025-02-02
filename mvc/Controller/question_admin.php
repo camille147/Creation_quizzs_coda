@@ -4,13 +4,11 @@
     $action = 'create';
     $errors = [];
     if (!empty($_GET['id'])) {
-        //$action = 'edit';
         $action = $_GET['action'];
 
         if ($action == 'edit_question') {
             $question = getQuestionAdmin($pdo, $_GET['id']);
 
-            //var_dump($responses);
             if(!is_array($question)) {
                 $errors = $question;
             }
@@ -42,7 +40,6 @@
         if (empty($errors)) {
             $responses = [];
     
-            // Récupérer les réponses depuis le formulaire
             foreach ($question['responses'] as $response) {
                 $responses[] = [
                     'id' => $response['id'],
@@ -53,10 +50,8 @@
                 ];
             }
     
-            // Mettre à jour la question
             $updatedQuestion = updateQuestion($pdo, $id, $title, $published, $type, $Numero_question);
     
-            // Mettre à jour les réponses
             $responseResult = updateResponses($pdo, $id, $responses);
     
             if (!empty($_POST['responses'])) {
@@ -79,7 +74,7 @@
             if (!is_bool($updatedQuestion)) {
                 $errors[] = $updatedQuestion;
             } else {
-                $question = getQuestionAdmin($pdo, $_GET['id']); // Recharger la question
+                $question = getQuestionAdmin($pdo, $_GET['id']); 
     
                 header("Location: index.php?component=quizzs_admin");
                 exit();

@@ -78,12 +78,11 @@
 
     document.addEventListener('DOMContentLoaded', async() => {
         document.querySelector('#list-quizzs').addEventListener('click', (e) => {
-        // Vérifier si l'élément cliqué est un lien avec la classe 'delete-link'
             if (e.target.classList.contains('delete-link')) {
-                e.preventDefault(); // Empêche la redirection immédiate
+                e.preventDefault()
     
                 if (confirmDeleteQuizz()) {
-                    window.location.href = e.target.getAttribute('href'); // Redirection si confirmé
+                    window.location.href = e.target.getAttribute('href')
                 }
             }
         })

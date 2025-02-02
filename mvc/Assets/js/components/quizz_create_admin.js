@@ -2,21 +2,19 @@ export const addQuestion = () => {
     const addButton = document.getElementById("add_button")
     const accordeon = document.getElementById("accordionExample")
     
-    let addsQuestion = Array.from(document.querySelectorAll(".add-rep")); // Conversion initiale en tableau
+    let addsQuestion = Array.from(document.querySelectorAll(".add-rep"))
     let question = 2
     
     const attachAddResponseListeners = () => {
-        // Attacher des gestionnaires d'événements à chaque bouton "add-rep"
         addsQuestion.forEach((addResponse) => {
-            let response = 2; // Compteur pour les réponses
-            // Vérifier si le gestionnaire est déjà attaché
+            let response = 2
             if (!addResponse.dataset.listenerAttached) {
-                addResponse.dataset.listenerAttached = "true"; // Éviter les doublons d'attachements
+                addResponse.dataset.listenerAttached = "true"
 
                 addResponse.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    response++;
-                    const idCurentQuestion = addResponse.dataset.id; 
+                    e.preventDefault()
+                    response++
+                    const idCurentQuestion = addResponse.dataset.id
                     const currentDivQuestion = document.getElementById(`question_${idCurentQuestion}_reps`)
 
                     const newDivResponse = document.createElement('div')
@@ -66,13 +64,11 @@ export const addQuestion = () => {
                     newDivResponse.innerHTML = divContentResponse
             
                     currentDivQuestion.appendChild(newDivResponse)
-                    console.log(`Bouton + cliqué (ID: ${idCurentQuestion}) ${response}`);
                 });
             }
         });
     };
 
-    // Appeler la fonction pour attacher les gestionnaires d'événements aux boutons déjà présents
     attachAddResponseListeners()
     addButton.addEventListener('click', () => {
         question = question + 1
@@ -210,9 +206,9 @@ export const addQuestion = () => {
             newDiv.innerHTML = divContent
             
             accordeon.appendChild(newDiv)
-            const newAddRepButton = newDiv.querySelector(".add-rep");
-            addsQuestion.push(newAddRepButton); // Ajouter le bouton au tableau
-            attachAddResponseListeners(); // Réattacher les gestionnaires d'événements
+            const newAddRepButton = newDiv.querySelector(".add-rep")
+            addsQuestion.push(newAddRepButton)
+            attachAddResponseListeners()
            
     })
 
