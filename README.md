@@ -10,9 +10,9 @@ La racine du projet est l'endroit où est le dossier mvc
 
 Installation:
 
--Clonez le dépôt dans htdocs et démarrez MySQL et Apache sur XAMPP.
--Dans le fichier .env.dist, remplissez les variables d'environnement, puis renommez le fichier en .env
--Créez une base de données puis importez le fichier base_de_donnee.sql qui se trouve à la racine du projet.
+- Clonez le dépôt dans htdocs et démarrez MySQL et Apache sur XAMPP.
+- Dans le fichier .env.dist, remplissez les variables d'environnement, puis renommez le fichier en .env
+- Créez une base de données puis importez le fichier base_de_donnee.sql qui se trouve à la racine du projet.
 - Initialisez Faker PHP avec ces ligne de commandes dans le projet :
     composer install
     composer require fakerphp/faker
